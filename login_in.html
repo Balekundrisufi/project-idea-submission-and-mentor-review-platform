@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Project Allocation System – Login</title>
+  <style>
+    :root {
+      --student-color: #0ea5e9;
+      --teacher-color: #ec4899;
+      --success: #10b981;
+      --text: #1e293b;
+      --input-bg: #f8fafc;
+      --card-bg: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: #d2f7f5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0;
+    }
+
+    .header {
+      width: 100%;
+      background-color: #ffe8cc;
+      display: flex;
+      align-items: center;
+      padding: 15px 30px;
+      box-shadow: 0 40px 60px rgba(230, 15, 201, 0.49);
+    }
+
+    .header img {
+      height: 80px;
+      width: 90px;
+      margin-right: 25px;
+      border: 3px solid black;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+   .header-text {
+  flex-grow: 1;
+  font-size: 28px;
+  font-weight: bold;
+  color: #291911;
+  max-width: 1000px;
+  line-height: 1.3;
+  
+}
+
+    
+    #card {
+      margin-top: 60px;
+      background-color: var(--card-bg);
+      width: 420px;
+      padding: 2rem;
+      border-radius: 1.5rem;
+      color: var(--text);
+      border: 1px solid #e2e8f0;
+      box-shadow:
+        0 0.5px 20px rgba(16, 13, 49, 0.3),
+        inset 0 0 150px rgba(503, 2, 2, 0.1);
+      animation: dropIn 0.6s ease-out;
+    }
+
+    @keyframes dropIn {
+      from {
+        opacity: 0;
+        transform: translateY(-100px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    #roleButtons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .role-btn {
+      flex: 1;
+      padding: 0.85rem 0;
+      border: none;
+      border-radius: 0.75rem;
+      color: white;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.25s ease;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25), inset 0 -4px 10px rgba(255, 255, 255, 0.2);
+      letter-spacing: 0.5px;
+    }
+
+    .role-btn:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+    }
+
+    #studentBtn {
+      background: linear-gradient(145deg, #0ea5e9, #0284c7);
+    }
+
+    #studentBtn.active {
+      background: linear-gradient(145deg, #0284c7, #0369a1);
+      box-shadow: 0 0 10px rgba(3, 105, 161, 0.8);
+    }
+
+    #teacherBtn {
+      background: linear-gradient(145deg, #ec4899, #db2777);
+    }
+
+    #teacherBtn.active {
+      background: linear-gradient(145deg, #db2777, #be185d);
+      box-shadow: 0 0 10px rgba(190, 24, 93, 0.8);
+    }
+
+    form {
+      display: none;
+    }
+
+    form.active {
+      display: block;
+    }
+
+    h2 {
+      margin-bottom: 1.2rem;
+      color: var(--text);
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-align: center;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    }
+
+    input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      margin-bottom: 1rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      background-color: var(--input-bg);
+      color: #000;
+    }
+
+    input::placeholder {
+      color: #555;
+    }
+
+    button.submit {
+      width: 100%;
+      padding: 0.95rem;
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #ffffff;
+      border: none;
+      border-radius: 0.65rem;
+      font-size: 1.05rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 10px 28px rgba(16, 185, 129, 0.4);
+    }
+
+    button.submit:hover {
+      background: linear-gradient(135deg, #059669, #047857);
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 10px 3px rgba(185, 41, 16, 0.5);
+    }
+
+    @media (max-width: 480px) {
+      #card {
+        width: 90%;
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header with Logo and Text -->
+  <div class="header">
+    <img src="images/contin_kle.png" alt="KLE Logo">
+    <div class="header-text">
+      KLE Technological University, Dr. M S Sheshgiri Campus, Udyambag, Belagavi - 590 008
+    </div>
+  </div>
+
+ 
+
+  <!-- Login Card -->
+  <div id="card">
+    <div id="roleButtons">
+      <button id="studentBtn" class="role-btn active">Student</button>
+      <button id="teacherBtn" class="role-btn">Teacher</button>
+    </div>
+
+    <!-- Student Login Form -->
+    <form id="studentForm" class="active" action="login_student.php" method="post">
+      <h2>🎓 Student Login</h2>
+      <input name="student_id" type="text" placeholder="Enter Your Student ID" required />
+      <input name="password" type="password" placeholder="Enter Your Password" required />
+      <button class="submit" type="submit">Login as Student</button>
+    </form>
+
+    <!-- Teacher Login Form -->
+    <form id="teacherForm" action="login_teacher.php" method="post">
+      <h2>👨‍🏫 Teacher Login</h2>
+      <input name="teacher_id" type="text" placeholder="Enter Your Email" required />
+      <input name="password" type="password" placeholder="Enter Your Password" required />
+      <button class="submit" type="submit">Login as Teacher</button>
+    </form>
+  </div>
+
+  <script>
+    const studentBtn = document.getElementById("studentBtn");
+    const teacherBtn = document.getElementById("teacherBtn");
+    const studentForm = document.getElementById("studentForm");
+    const teacherForm = document.getElementById("teacherForm");
+
+    studentBtn.addEventListener("click", () => {
+      studentForm.classList.add("active");
+      teacherForm.classList.remove("active");
+      studentBtn.classList.add("active");
+      teacherBtn.classList.remove("active");
+    });
+
+    teacherBtn.addEventListener("click", () => {
+      teacherForm.classList.add("active");
+      studentForm.classList.remove("active");
+      teacherBtn.classList.add("active");
+      studentBtn.classList.remove("active");
+    });
+  </script>
+</body>
+</html>
